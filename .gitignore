@@ -87,3 +87,16 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Pycharm
+.idea
+
+# csv
+*.csv
+
+# config
+config.yml
+
+# .directory
+.directory
+
