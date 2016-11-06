@@ -10,7 +10,8 @@ import yaml
 from PyQt4 import QtCore, QtGui, uic
 from window import Ui_MainWindow
 
-SPEED = 115200
+#скорость передачи данных
+SPEED = 230400
 
 class RealWindow(QtGui.QDialog):
     def __init__(self, app, ui: Ui_MainWindow):
@@ -21,6 +22,8 @@ class RealWindow(QtGui.QDialog):
         self.app = app
         self.ui = ui
         self.ui.setupUi(self)
+        self.ui.datalist.setUniformItemSizes(True)
+
         self.fill_ports()
         self.attach_handlers()
         self.first_time = time.time()
@@ -32,6 +35,7 @@ class RealWindow(QtGui.QDialog):
         self.capture_in_progress = False
         self.captured_nums_count = 0
         self.captured_nums_avg = 0
+
 
     def attach_handlers(self):
         self.ui.refreshPorts.clicked.connect(self.fill_ports)

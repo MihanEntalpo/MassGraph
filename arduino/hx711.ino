@@ -7,7 +7,7 @@ const int led = 2;
 int state = 0;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(230400);
   digitalWrite(led, HIGH);
 }
 
