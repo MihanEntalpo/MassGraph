@@ -233,12 +233,14 @@ class RealWindow(QtGui.QDialog):
     def connect_click(self):
         port = self.ui.ports.currentText()
         if port:
-            self.app.serial.open_connection(port)
-
-            self.ui.refreshPorts.setEnabled(False)
-            self.ui.ports.setEnabled(False)
-            self.ui.connectPort.setEnabled(False)
-            self.ui.disconnectPort.setEnabled(True)
+            try:
+                self.app.serial.open_connection(port)
+                self.ui.refreshPorts.setEnabled(False)
+                self.ui.ports.setEnabled(False)
+                self.ui.connectPort.setEnabled(False)
+                self.ui.disconnectPort.setEnabled(True)
+            except serial.serialutil.SerialException as e:
+                QtGui.QMessageBox.warning(self, "Ошибка", "Ошибка подключения к порту:\n" + str(e))
 
         else:
             QtGui.QMessageBox.warning(self, "Ошибка", "Вы не выбрали порт!")
